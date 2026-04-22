@@ -7,7 +7,6 @@
 require_once '../config/database.php';
 require_once '../includes/auth.php';
 require_once '../includes/functions.php';
-require_once '../includes/permissions.php';
 
 // Profile is visible to all admins (can view own profile)
 // No extra permission check needed beyond isAdmin()

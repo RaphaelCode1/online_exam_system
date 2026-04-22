@@ -207,6 +207,12 @@ include '../includes/header.php';
                 <h3>System Settings</h3>
                 <p>Configure the system</p>
             </a>
+            <a href="activity-log.php" class="feature-card">
+                <i class="fas fa-history"></i>
+                <h3>Activity Log</h3>
+                <p>View system activities</p>
+                <span class="feature-badge">New</span>
+            </a>
             <a href="chatbot-settings.php" class="feature-card">
                 <i class="fas fa-robot"></i>
                 <h3>Chatbot Settings</h3>
