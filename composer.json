@@ -1,0 +1,14 @@
+{
+    "require": {
+        "dompdf/dompdf": "^3.1",
+        "phpoffice/phpspreadsheet": "^5.5",
+        "rumenx/php-chatbot": "^1.1",
+        "google/cloud-ai-platform": "*",
+        "google-gemini-php/client": "^2.7"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}
