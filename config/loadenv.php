@@ -19,17 +19,20 @@ if (file_exists($env_file)) {
         if (count($parts) == 2) {
             $key = trim($parts[0]);
             $value = trim($parts[1]);
+            // Remove quotes if present
+            $value = trim($value, '"\'');
             putenv("$key=$value");
             $_ENV[$key] = $value;
+            $_SERVER[$key] = $value;
         }
     }
 }
 
-// Define constants from environment variables
+// Helper function to get environment variables
 function env($key, $default = null) {
     $value = getenv($key);
     if ($value === false) {
-        return $default;
+        return isset($_ENV[$key]) ? $_ENV[$key] : $default;
     }
     return $value;
 }
@@ -44,14 +47,14 @@ if (!defined('DB_NAME')) define('DB_NAME', env('DB_NAME', 'online_exam_system'))
 if (!defined('BREVO_API_KEY')) define('BREVO_API_KEY', env('BREVO_API_KEY', ''));
 if (!defined('BREVO_SMTP_KEY')) define('BREVO_SMTP_KEY', env('BREVO_SMTP_KEY', ''));
 if (!defined('BREVO_SMTP_LOGIN')) define('BREVO_SMTP_LOGIN', env('BREVO_SMTP_LOGIN', ''));
-if (!defined('BREVO_SMTP_SERVER')) define('BREVO_SMTP_SERVER', 'smtp-relay.brevo.com');
-if (!defined('BREVO_SMTP_PORT')) define('BREVO_SMTP_PORT', 587);
-if (!defined('BREVO_SENDER_EMAIL')) define('BREVO_SENDER_EMAIL', 'noreply@yourapp.com');
-if (!defined('BREVO_SENDER_NAME')) define('BREVO_SENDER_NAME', 'Your App Name');
+if (!defined('BREVO_SMTP_SERVER')) define('BREVO_SMTP_SERVER', env('BREVO_SMTP_SERVER', 'smtp-relay.brevo.com'));
+if (!defined('BREVO_SMTP_PORT')) define('BREVO_SMTP_PORT', env('BREVO_SMTP_PORT', 587));
+if (!defined('BREVO_SENDER_EMAIL')) define('BREVO_SENDER_EMAIL', env('BREVO_SENDER_EMAIL', 'noreply@yourapp.com'));
+if (!defined('BREVO_SENDER_NAME')) define('BREVO_SENDER_NAME', env('BREVO_SENDER_NAME', 'Your App Name'));
 
 // Gemini API
 if (!defined('GEMINI_API_KEY')) define('GEMINI_API_KEY', env('GEMINI_API_KEY', ''));
-if (!defined('GEMINI_MODEL')) define('GEMINI_MODEL', 'gemini-2.5-flash');
+if (!defined('GEMINI_MODEL')) define('GEMINI_MODEL', env('GEMINI_MODEL', 'gemini-2.5-flash'));
 
 // Site URL
 if (!defined('SITE_URL')) define('SITE_URL', env('SITE_URL', 'http://localhost/online_exam_system'));
@@ -60,5 +63,5 @@ if (!defined('SITE_URL')) define('SITE_URL', env('SITE_URL', 'http://localhost/o
 if (!defined('ENABLE_EMAILS')) define('ENABLE_EMAILS', env('ENABLE_EMAILS', '0'));
 
 // Site name
-if (!defined('SITE_NAME')) define('SITE_NAME', 'Online Examination System');
+if (!defined('SITE_NAME')) define('SITE_NAME', env('SITE_NAME', 'Online Examination System'));
 ?>
