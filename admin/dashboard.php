@@ -15,6 +15,10 @@ ini_set('display_errors', 1);
 require_once '../config/database.php';
 require_once '../includes/auth.php';
 require_once '../includes/functions.php';
+require_once '../includes/permissions.php';
+
+// Dashboard is visible to all admins, no additional permission check needed
+// The permissions.php already checks if user is admin
 
 
 // Check if user is logged in as admin in THIS session

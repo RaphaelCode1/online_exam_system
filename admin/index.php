@@ -14,7 +14,7 @@ ini_set('display_errors', 1);
 require_once '../config/database.php';
 require_once '../includes/auth.php';
 require_once '../includes/functions.php';
-
+require_once '../includes/permissions.php'; // This redirects to login or dashboard, no extra check needed
 
 // Check if admin is logged in
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {

@@ -9,6 +9,14 @@ session_start();
 require_once '../config/database.php';
 require_once '../includes/auth.php';
 require_once '../includes/functions.php';
+require_once '../includes/permissions.php';
+
+// No permission check needed - this is a public page
+// But ensure user is not already logged in
+if (isAdmin()) {
+    header('Location: dashboard.php');
+    exit();
+}
 
 $error = '';
 $success = '';

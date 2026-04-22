@@ -7,6 +7,12 @@
 require_once '../config/database.php';
 require_once '../includes/auth.php';
 require_once '../includes/functions.php';
+require_once '../includes/permissions.php';
+
+if (!canExportResults()) {
+    header('Location: dashboard.php?error=permission_denied');
+    exit();
+}
 
 
 // Load Composer autoloader

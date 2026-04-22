@@ -14,6 +14,13 @@ require_once '../config/database.php';
 require_once '../includes/auth.php';
 require_once '../includes/functions.php';
 require_once '../config/gemini.php';
+require_once '../includes/permissions.php';
+
+if (!canViewMaterials()) {
+    header('Location: dashboard.php?error=permission_denied');
+    exit();
+}
+
 
 // Check if user is logged in as admin
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {

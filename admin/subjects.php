@@ -12,6 +12,13 @@ ini_set('display_errors', 1);
 require_once '../config/database.php';
 require_once '../includes/auth.php';
 require_once '../includes/functions.php';
+require_once '../includes/permissions.php';
+
+if (!canViewExams()) {
+    header('Location: dashboard.php?error=permission_denied');
+    exit();
+}
+
 
 requireAdmin();
 

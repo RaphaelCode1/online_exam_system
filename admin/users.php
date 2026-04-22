@@ -7,6 +7,12 @@
 require_once '../config/database.php';
 require_once '../includes/auth.php';
 require_once '../includes/functions.php';
+require_once '../includes/permissions.php';
+
+if (!canViewUsers()) {
+    header('Location: dashboard.php?error=permission_denied');
+    exit();
+}
 
 
 requireAdmin();
@@ -18,6 +24,7 @@ $message = '';
 $error = '';
 $action = isset($_GET['action']) ? $_GET['action'] : 'list';
 $user_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
 
 // Handle Delete Action
 if (isset($_POST['action']) && $_POST['action'] === 'delete' && isset($_POST['user_id'])) {
