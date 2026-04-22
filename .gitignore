@@ -23,7 +23,7 @@ Thumbs.db
 
 # Backup files
 /backups/
-*.sql
+#*.sql
 *.sql.gz
 
 # Log files
